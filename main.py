@@ -22,19 +22,21 @@ def run(data):
               'Amount 6', 'Amount 7', 'Amount 8', 'Amount 9', 'Amount 10']
 
     data = data.drop_duplicates()
-
     data = data.dropna(subset=['NDC'])
+    data = data.fillna(0)
     data.NDC = data.NDC.astype(str)
     data.NDC = data.NDC.str[0:-2]
     data.NDC = data.NDC.str.zfill(11)
 
-    data[prices] = data[prices].fillna(0)
-
     for col in prices:
+        data.loc[data[col] == 0, [qtys[prices.index(col)]]] = 0
         data[col] = data[col].map(lambda x: '{0:.2f}'.format(x))
 
     for col in qtys:
         data[col] = data[col].map(lambda x: '{0:.0f}'.format(x))
+
+    data.UPC = ''
+    data.Alternate = ''
 
     return data
 
