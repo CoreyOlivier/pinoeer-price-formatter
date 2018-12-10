@@ -29,7 +29,7 @@ def run(data):
     data.NDC = data.NDC.str.zfill(11)
 
     for col in prices:
-        data.loc[data[col] == 0, [qtys[prices.index(col)]]] = 0
+        data.loc[data[col] == 0, col] = 1000
         data[col] = data[col].map(lambda x: '{0:.2f}'.format(x))
 
     for col in qtys:
