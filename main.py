@@ -1,7 +1,9 @@
 import pandas as pd
 
 file = '~/Documents/pricelistTest.csv'
-saveFile = '~/Documents/pricelistEdit.csv'
+date = datetime.date.today()
+strDate = datetime.date.strtime(date, "%m%d%y")
+saveFile = '~/Documents/pricelist{}.csv'.format(strDate)
 
 Qtys = ['Qty 1', 'Qty 2', 'Qty 3', 'Qty 4', 'Qty 5',
         'Qty 6', 'Qty 7', 'Qty 8', 'Qty 9', 'Qty 10']
@@ -25,7 +27,7 @@ def run(data):
     data = data.dropna(subset=['NDC'])
     data = data.fillna(0)
     data.NDC = data.NDC.astype(str)
-    data.NDC = data.NDC.str[0:-2]
+#    data.NDC = data.NDC.str[0:-2]
     data.NDC = data.NDC.str.zfill(11)
 
     for col in prices:
