@@ -1,4 +1,5 @@
 import pandas as pd
+import datetime
 
 file = '~/Documents/pricelistTest.csv'
 date = datetime.date.today()
