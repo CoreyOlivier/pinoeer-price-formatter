@@ -58,8 +58,8 @@ def last_prices(df):
 
 
 def replace_cell(df, row, counter):
-    qty = df.loc[row, 'Qty {}'.format(counter)]
-    amount = df.loc[row, 'Amount {}'.format(counter)]
+    qty = float(df.loc[row, 'Qty {}'.format(counter)])
+    amount = float(df.loc[row, 'Amount {}'.format(counter)])
     if counter == 10:
         counter = 9
     df.loc[row, 'Qty {}'.format(counter+1)] = qty*10
